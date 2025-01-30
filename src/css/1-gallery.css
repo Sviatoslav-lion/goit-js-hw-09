@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  ul.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 16px; /* Відстань між блоками */
+    padding: 16px;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 1200px; /* Центрування та максимальна ширина */
+  }
+  
+  ul.gallery li {
+    overflow: hidden;
+    border-radius: 8px; /* Закруглені кути */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкий тіньовий ефект */
+    transition: transform 0.3s ease;
+  }
+  
+  ul.gallery li:hover {
+    transform: scale(1.05);
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+ 
+  ul.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Забезпечення однакового розміру зображень */
+    display: block;
+  }
+  
+
+
+  /* --------- */
+  /* ============================ modal window ===================================*/
+
+.modal-overlay {
+  background-color: rgba(46, 47, 66, 0.4);
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1; /* це робить блок невидемим для глядача. але функціонально він поверх всього контенту сторінки */
+  visibility: 0;
+  pointer-events: none; /* це дозволяє блоку ігнорувати кліки миші та пропускати їх скрізь блок до взаємодії з контентом сторінки */ 
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.modal-overlay.is-open { /* додатковий клас відкривання вікна для java розробника. */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.modal {
+  background-color: #fcfcfc;
+  border-radius: 4px;
+  box-shadow: 
+  0 1px 1px 0 rgba(0, 0, 0, 0.14),
+  0 1px 3px 0 rgba(0, 0, 0, 0.12),
+  0 2px 1px 0 rgba(0, 0, 0, 0.2);
+  width: 360px;
+  height: 248px;
+  overflow-y: auto; /* обмежує контент, що дозволяє контонту не висовуватись за межі єелементу, та вмикає прокрутку вертикальну, якщо потрібно */
+  padding: 24px;  
+  position:absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.fantic {
+  margin-bottom: 8px;
+}
+.modal-form-label {
+  display: block;
+  font-weight: 400;
+  font-size: 12px; 
+  line-height: 1.17; 
+  letter-spacing: 0.04em;
+  color: #8e8f99;
+  margin-bottom: 8px;
+}
+
+.modal-form-label + .addition {
+  margin-bottom: 16px;
+}
+
+.modal-form-input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  border-radius: 4px;
+  background: transparent;
+  /*padding-left: 38px;*/
+  font-size: 12px;
+  line-height: 1.16667;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  outline: transparent;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.form-textarea {
+  width: 100%;
+  /*padding: 8px 16px;*/
+  resize: none;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: 0.04em;
+  color: rgba(46, 47, 66, 0.4); 
+  height: 120px;
+  background: transparent;
+  outline: transparent; 
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fantic-comment-gap {
+  margin-bottom: 16px;
+}
+.form-textarea::placeholder{
+  color: rgba(46, 47, 66, 0.4);
+}
+
+.form-link {
+  line-height: 133%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #4d5ae5;
+}
+.modal-form-input:focus + .modal-form-input-icon {
+  fill: #4d5ae5;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-form-input:focus,
+.form-textarea:focus,
+.checkbox-label .form-checkbox:focus {
+  border: 1px solid #4d5ae5;
+  outline: none;
+}
+
+.fantic-button-gap {
+  margin-bottom: 24px;
+}
+
+.form-send-button {
+  display: block;
+  /*margin: auto ;*/
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 85px;
+  height: 40px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+  background: #4d5ae5;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #fff;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /* задаємо плавність зміни кольору при наведенні для тексту*/
+}
+.form-send-button:hover,
+.form-send-button:focus {
+  background-color:#404BBF;
+}
